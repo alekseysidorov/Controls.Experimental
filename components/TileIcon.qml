@@ -10,15 +10,17 @@ Item {
 
 	property alias iconSource : icon.source
 	property alias text: label.text
-	property string badge
+	property alias badge: badgeLabel.text
 	property int progress: 0
 	property QtObject page: null
+	property bool blinking: false
+
+	property Style platformStyle: TileIconStyle {}
 
 	signal clicked
 
 	function alert() {
-		console.log("alert");
-		state = "alert";
+		alertTimer.restart();
 	}
 
 	width: childrenRect.width
@@ -34,7 +36,7 @@ Item {
 
 	Text {
 		id: label
-		color: checked ? "white" : "gray"
+		color: checked ? platformStyle.selectedTextColor : platformStyle.textColor
 
 		anchors.top: icon.bottom
 		//anchors.topMargin: label.paintedHeight / 2
@@ -43,6 +45,27 @@ Item {
 		elide: Text.ElideMiddle
 		horizontalAlignment: Text.AlignHCenter
 		font.pointSize: 12
+	}
+
+	BorderImage {
+		id: badgeBackground
+		source: platformStyle.badgeBackground
+		visible: badge.length > 0
+		smooth: true
+
+		anchors.right: root.right
+		anchors.top: root.top
+
+		width: badgeLabel.implicitWidth + badgeLabel.font.pointSize
+		height: badgeLabel.implicitHeight + badgeLabel.font.pointSize
+		border.left: 5; border.top: 5
+		border.right: 5; border.bottom: 5
+
+		Text {
+			id: badgeLabel
+			anchors.centerIn: parent
+			font.pointSize: 10
+		}
 	}
 
 	MouseArea {
@@ -57,11 +80,10 @@ Item {
 
 	Timer {
 		id: alertTimer
-		interval: 250
+		interval: 1000
 		running: false
-		onTriggered: {
-			console.log("change state");
-			root.state = "";
+		onRunningChanged: {
+			root.state = running ? "blinking" : "";
 		}
 	}
 
@@ -73,11 +95,7 @@ Item {
 			PropertyChanges { target: root; scale: 2.5; }
 		},
 		State {
-			name: "alert"
-			PropertyChanges {
-				target: alertTimer
-				running: true
-			}
+			name: "blinking"
 			PropertyChanges {
 				target: root
 				transformOrigin: Item.Center
@@ -105,12 +123,10 @@ Item {
 		},
 		Transition {
 			from: ""
-			to: "alert"
-			reversible: true
+			to: "blinking"
 
 			SequentialAnimation {
-				running: true
-				loops: 5
+				loops: RotationAnimation.Infinite
 
 				RotationAnimation {
 					target: root
@@ -134,9 +150,18 @@ Item {
 					duration: 25
 				}
 			}
-			ParallelAnimation {
-				PropertyAnimation { properties: "scale"; easing.type: Easing.InOutExpo; duration: 150 }
+			PropertyAnimation { properties: "scale"; easing.type: Easing.InOutExpo; duration: 150 }
+		},
+		Transition {
+			from: "blinking"
+			to: ""
+
+			PropertyAnimation {
+				target: root
+				properties: "rotation, scale"
+				duration: 150
 			}
+
 		}
 	]
 }

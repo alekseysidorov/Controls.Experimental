@@ -40,6 +40,7 @@ PageTileWindow {
 				iconSource: checked ? "images/tab_audio_down.png" :
 									  "images/tab_audio_up.png"
 				text: "Audio files"
+				badge: "42"
 				checkable: true
 				page: mainPage
 			}
