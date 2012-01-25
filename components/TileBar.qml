@@ -7,4 +7,5 @@ ToolBar {
 		inverted: true
 		background: "images/bar.png"
 	}
+	transition: "replace"
 }

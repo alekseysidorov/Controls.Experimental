@@ -9,17 +9,28 @@ PageTileWindow {
 
 	MainPage {
 		id: mainPage
+	}
 
-		ButtonRow {
-			anchors.fill: parent
+	AnotherPage {
+		id: anotherPage
+		Label {
+			id: foo
+			color: "gray"
+			font.pointSize: 18
+			anchors.centerIn: parent
+			text: "Another Page"
 		}
+
 	}
 
 	ToolBarLayout {
 		id: commonTools
 		visible: true
 
-		ButtonRow {
+		TileRow {
+
+			pageStack: appWindow.pageStack
+
 			anchors.fill: parent
 			anchors.margins: 10
 			spacing: 18
@@ -29,12 +40,14 @@ PageTileWindow {
 									  "images/tab_audio_up.png"
 				text: "Audio files"
 				checkable: true
+				page: mainPage
 			}
 			TileIcon {
 				iconSource: checked ? "images/tab_profile_down.png" :
 									  "images/tab_profile_up.png"
 				text: "Profiles"
 				checkable: true
+				page: anotherPage
 			}
 		}
 	}

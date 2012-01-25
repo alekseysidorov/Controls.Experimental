@@ -12,8 +12,13 @@ Item {
 	property alias text: label.text
 	property string badge
 	property int progress: 0
+	property QtObject page: null
 
 	signal clicked
+
+	function alert() {
+
+	}
 
 	width: childrenRect.width
 	height: childrenRect.height
