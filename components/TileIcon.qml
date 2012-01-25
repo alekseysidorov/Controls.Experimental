@@ -17,12 +17,13 @@ Item {
 	signal clicked
 
 	function alert() {
-
+		console.log("alert");
+		state = "alert";
 	}
 
 	width: childrenRect.width
 	height: childrenRect.height
-
+	transformOrigin: Item.Bottom
 
 	Image {
 		id: icon
@@ -54,19 +55,85 @@ Item {
 		}
 	}
 
+	Timer {
+		id: alertTimer
+		interval: 250
+		running: false
+		onTriggered: {
+			console.log("change state");
+			root.state = "";
+		}
+	}
+
 	states: [
 		// Inactive state.
 		State {
 			name: "pressed"
 			when: root.pressed
-			PropertyChanges { target: root; scale: 1.5; }
+			PropertyChanges { target: root; scale: 2.5; }
+		},
+		State {
+			name: "alert"
+			PropertyChanges {
+				target: alertTimer
+				running: true
+			}
+			PropertyChanges {
+				target: root
+				transformOrigin: Item.Center
+				scale: 1.5
+			}
+		},
+		State {
+			name: ""
+			PropertyChanges {
+				target: root
+				rotation: 0
+				scale: 1
+			}
 		}
+
 	]
 
 	transitions: [
 		// Transition between active and inactive states.
 		Transition {
 			from: ""; to: "pressed"; reversible: true
+			ParallelAnimation {
+				PropertyAnimation { properties: "scale"; easing.type: Easing.InOutExpo; duration: 150 }
+			}
+		},
+		Transition {
+			from: ""
+			to: "alert"
+			reversible: true
+
+			SequentialAnimation {
+				running: true
+				loops: 5
+
+				RotationAnimation {
+					target: root
+					properties: "rotation"
+					from: 0
+					to: 10
+					duration: 25
+				}
+				RotationAnimation {
+					target: root
+					properties: "rotation"
+					from: 10
+					to: -10
+					duration: 50
+				}
+				RotationAnimation {
+					target: root
+					properties: "rotation"
+					from: -10
+					to: 0
+					duration: 25
+				}
+			}
 			ParallelAnimation {
 				PropertyAnimation { properties: "scale"; easing.type: Easing.InOutExpo; duration: 150 }
 			}

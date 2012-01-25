@@ -36,6 +36,7 @@ PageTileWindow {
 			spacing: 18
 
 			TileIcon {
+				id: audioIcon
 				iconSource: checked ? "images/tab_audio_down.png" :
 									  "images/tab_audio_up.png"
 				text: "Audio files"
