@@ -40,7 +40,7 @@ Item {
 
 		anchors.top: icon.bottom
 		//anchors.topMargin: label.paintedHeight / 2
-		anchors.horizontalCenter: root.horizontalCenter
+		//anchors.horizontalCenter: root.horizontalCenter
 
 		elide: Text.ElideMiddle
 		horizontalAlignment: Text.AlignHCenter
@@ -53,18 +53,20 @@ Item {
 		visible: badge.length > 0
 		smooth: true
 
-		anchors.right: root.right
+		anchors.right: label.right
 		anchors.top: root.top
 
-		width: badgeLabel.implicitWidth + badgeLabel.font.pointSize
-		height: badgeLabel.implicitHeight + badgeLabel.font.pointSize
-		border.left: 5; border.top: 5
-		border.right: 5; border.bottom: 5
+		width: Math.max(badgeBackground.sourceSize.width, badgeLabel.implicitWidth + badgeLabel.font.pointSize)
+		height: Math.max(badgeBackground.sourceSize.height, badgeLabel.implicitHeight + badgeLabel.font.pointSize)
+		border.left: 10; border.top: 10
+		border.right: 10; border.bottom: 10
 
 		Text {
 			id: badgeLabel
-			anchors.centerIn: parent
 			font.pointSize: 10
+			anchors.centerIn: parent
+
+			color: "white"
 		}
 	}
 

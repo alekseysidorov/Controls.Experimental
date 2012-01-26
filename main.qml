@@ -48,6 +48,7 @@ PageTileWindow {
 				iconSource: checked ? "images/tab_profile_down.png" :
 									  "images/tab_profile_up.png"
 				text: "Profiles"
+				badge: "7"
 				checkable: true
 				page: anotherPage
 			}
