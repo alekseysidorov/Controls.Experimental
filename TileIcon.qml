@@ -1,5 +1,6 @@
 import QtQuick 1.1
 import com.nokia.meego 1.0
+import "UIConstants.js" as UI
 
 Item {
 	id: root
@@ -23,8 +24,8 @@ Item {
 		alertTimer.restart();
 	}
 
-	width: childrenRect.width
-	height: childrenRect.height
+    width: Math.max(icon.width, label.width)
+    height: parent ? parent.height : icon.height + label.height + UI.DEFAULT_MARGIN
 	transformOrigin: Item.Bottom
 
 	Image {
@@ -38,13 +39,13 @@ Item {
 		id: label
 		color: checked ? platformStyle.selectedTextColor : platformStyle.textColor
 
-		anchors.top: icon.bottom
-		//anchors.topMargin: label.paintedHeight / 2
-		//anchors.horizontalCenter: root.horizontalCenter
+        anchors.top: icon.bottom
+        anchors.bottom: root.bottom
 
 		elide: Text.ElideMiddle
-		horizontalAlignment: Text.AlignHCenter
-		font.pointSize: 12
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignBottom
+        font.pixelSize: UI.FONT_XSMALL
 	}
 
 	BorderImage {
@@ -56,14 +57,14 @@ Item {
 		anchors.right: label.right
 		anchors.top: root.top
 
-		width: Math.max(badgeBackground.sourceSize.width, badgeLabel.implicitWidth + badgeLabel.font.pointSize)
-		height: Math.max(badgeBackground.sourceSize.height, badgeLabel.implicitHeight + badgeLabel.font.pointSize)
+        width: Math.max(badgeBackground.sourceSize.width, badgeLabel.implicitWidth)
+        height: Math.max(badgeBackground.sourceSize.height, badgeLabel.implicitHeight)
 		border.left: 10; border.top: 10
 		border.right: 10; border.bottom: 10
 
 		Text {
 			id: badgeLabel
-			font.pointSize: 10
+            font.pixelSize: UI.FONT_XXSMALL
 			anchors.centerIn: parent
 
 			color: "white"
