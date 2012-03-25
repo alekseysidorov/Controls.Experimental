@@ -19,7 +19,7 @@ ButtonRow {
         }
     }
 
-	onCheckedButtonChanged: {
+    onCheckedButtonChanged: {
 		pageStack.push(checkedButton.page);
 	}
 

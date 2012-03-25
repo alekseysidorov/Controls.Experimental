@@ -37,7 +37,7 @@ Window {
 		TileBar {
 			id: tileBar
 			anchors.bottom: parent.bottom
-			privateVisibility: (inputContext.softwareInputPanelVisible==true || inputContext.customSoftwareInputPanelVisible == true)
+            privateVisibility: (inputContext.softwareInputPanelVisible === true || inputContext.customSoftwareInputPanelVisible === true)
 			? ToolBarVisibility.HiddenImmediately : (window.showToolBar ? ToolBarVisibility.Visible : ToolBarVisibility.Hidden)
 		}
 	}
