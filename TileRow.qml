@@ -20,7 +20,7 @@ ButtonRow {
     }
 
     onCheckedButtonChanged: {
-		pageStack.push(checkedButton.page);
+        pageStack.replace(checkedButton.page);
 	}
 
     Connections {
