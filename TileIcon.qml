@@ -24,7 +24,7 @@ Item {
 		alertTimer.restart();
 	}
 
-    width: Math.max(icon.width, label.width)
+    width: Math.max(icon.width, label.width, 64)
     height: parent ? parent.height : icon.height + label.height + UI.DEFAULT_MARGIN
 	transformOrigin: Item.Bottom
 
@@ -54,7 +54,7 @@ Item {
 		visible: badge.length > 0
 		smooth: true
 
-		anchors.right: label.right
+        anchors.right: root.right
 		anchors.top: root.top
 
         width: Math.max(badgeBackground.sourceSize.width, badgeLabel.implicitWidth)
