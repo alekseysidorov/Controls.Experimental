@@ -21,8 +21,8 @@ Item {
 	signal clicked
 
 	function alert() {
-		alertTimer.restart();
-	}
+        alertTimer.restart();
+    }
 
     width: Math.max(icon.width, label.width, 64)
     height: parent ? parent.height : icon.height + label.height + UI.DEFAULT_MARGIN
