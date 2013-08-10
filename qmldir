@@ -1,0 +1,5 @@
+module Controls.Experimental
+
+SidebarItem 1.0 SidebarItem.qml
+SidebarView 1.0 SidebarView.qml
+Units 1.0 Units.qml
