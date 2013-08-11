@@ -6,7 +6,7 @@ Tab {
     id: tab
 
     property string iconName
-    property string iconSource: iconName ? "image://desktoptheme/" + iconName : ""
+    property url iconSource: iconName ? "image://desktoptheme/" + iconName : ""
 
     property string description
     property string section

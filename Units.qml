@@ -1,8 +1,9 @@
 import QtQuick 2.0
+import QtQuick.Window 2.1
 
-QtObject {
-    readonly property real mm: 4
-    readonly property int gridUnit: mm
+Item {
+    readonly property real mm: Screen.logicalPixelDensity
+    readonly property int gridUnit: Math.round(mm)
 
     function gu(f) {
         return f * gridUnit;

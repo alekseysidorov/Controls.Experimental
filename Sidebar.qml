@@ -11,6 +11,7 @@ Rectangle {
 
     /*! internal */
     readonly property bool __mac: Qt.platform.os === "osx"
+    property int __iconSize: units.gu(4)
 
     color: systemPalette.window
     clip: true
@@ -32,8 +33,11 @@ Rectangle {
                 Image {
                     source: model.iconSource
 
-                    width: units.gu(4)
-                    height: width
+                    Layout.minimumWidth: __iconSize
+                    Layout.maximumWidth: __iconSize
+                    Layout.maximumHeight: __iconSize
+
+                    anchors.verticalCenter: parent.verticalAlignment
                 }
 
                 Label {
@@ -42,6 +46,8 @@ Rectangle {
                     color: selected ? (__mac ? systemPalette.base : systemPalette.highlightedText)
                                     : systemPalette.windowText
                     text: model.title
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
                 }
             }
 
@@ -55,7 +61,7 @@ Rectangle {
                     top: parent.top
                 }
 
-                color: selected ? Qt.darker(systemPalette.highlight, 2) : "transparent"
+                color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
             }
 
             Rectangle {
@@ -68,7 +74,7 @@ Rectangle {
                     bottom: parent.bottom
                 }
 
-                color: selected ? Qt.darker(systemPalette.highlight, 2) : "transparent"
+                color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
             }
         }
     }
@@ -90,7 +96,7 @@ Rectangle {
             }
 
             text: section
-            color: Qt.darker(systemPalette.shadow)
+            color: "gray"
         }
 
         delegate: Loader {
@@ -99,13 +105,18 @@ Rectangle {
             readonly property bool hovered: area.containsMouse
 
             sourceComponent: model.sidebarDelegate ? model.sidebarDelegate : sideBarComp
-            width: parent.width
             height: item ? item.implicitHeight : units.gu(8)
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
 
             MouseArea {
                 id: area
+
                 anchors.fill: parent
                 hoverEnabled: true
+                enabled: sidebarItems[index].sourceComponent
 
                 onClicked: currentIndex = index
             }
