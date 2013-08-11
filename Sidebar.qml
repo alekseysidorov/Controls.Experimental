@@ -28,7 +28,7 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.leftMargin: units.gu(1)
+                anchors.leftMargin: units.gu(2)
 
                 Image {
                     source: model.iconSource
@@ -88,15 +88,17 @@ Rectangle {
 
         section.property: "section"
         section.delegate: Label {
+            height: units.gu(5)
 
             anchors {
                 left: parent.left
                 right: parent.right
-                leftMargin: units.gu(1)
+                leftMargin: units.gu(2)
             }
 
             text: section
-            color: "gray"
+            color: __mac ? Qt.darker(systemPalette.shadow) : systemPalette.shadow
+            verticalAlignment: Text.AlignVCenter
         }
 
         delegate: Loader {
