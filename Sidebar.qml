@@ -94,10 +94,10 @@ Rectangle {
             anchors {
                 left: parent.left
                 right: parent.right
-                leftMargin: units.gu(2)
+                leftMargin: units.gu(1)
             }
 
-            text: section
+            text: section ? ("➔ " + section) : ""
             color: __mac ? Qt.darker(systemPalette.shadow, 3) : systemPalette.shadow
             verticalAlignment: Text.AlignVCenter
         }
