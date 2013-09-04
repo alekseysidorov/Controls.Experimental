@@ -15,7 +15,7 @@ Rectangle {
 
     color: systemPalette.window
     clip: true
-    Layout.minimumWidth: units.gu(30)
+    Layout.minimumWidth: units.gu(40)
 
     Component {
         id: sideBarComp
@@ -23,7 +23,7 @@ Rectangle {
         Rectangle {
             implicitHeight: units.gu(6)
 
-            color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
+            color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.3) : systemPalette.highlight)
                             : "transparent"
 
             RowLayout {
@@ -85,10 +85,11 @@ Rectangle {
         anchors.fill: parent
         anchors.topMargin: units.gu(1)
         model: d.children
+        interactive: false
 
         section.property: "section"
         section.delegate: Label {
-            height: units.gu(5)
+            height: units.gu(6)
 
             anchors {
                 left: parent.left
@@ -97,7 +98,7 @@ Rectangle {
             }
 
             text: section
-            color: __mac ? Qt.darker(systemPalette.shadow) : systemPalette.shadow
+            color: __mac ? Qt.darker(systemPalette.shadow, 3) : systemPalette.shadow
             verticalAlignment: Text.AlignVCenter
         }
 
