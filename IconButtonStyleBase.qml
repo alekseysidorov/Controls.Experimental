@@ -56,6 +56,10 @@ ButtonStyle {
         id: textUnderIconComponent
 
         ColumnLayout {
+            Item {
+                Layout.fillWidth: true
+                Layout.maximumHeight: 1
+            }
             Loader {
                 Layout.fillHeight: true
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -66,6 +70,10 @@ ButtonStyle {
                 Layout.fillWidth: true
                 anchors.horizontalCenter: parent.horizontalCenter
                 sourceComponent: textComponent
+            }
+            Item {
+                Layout.fillWidth: true
+                Layout.maximumHeight: 1
             }
         }
     }

@@ -23,7 +23,7 @@ Rectangle {
         Rectangle {
             implicitHeight: units.gu(6)
 
-            color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.3) : systemPalette.highlight)
+            color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
                             : "transparent"
 
             RowLayout {
@@ -94,11 +94,11 @@ Rectangle {
             anchors {
                 left: parent.left
                 right: parent.right
-                leftMargin: units.gu(1)
+                leftMargin: units.gu(2)
             }
 
-            text: section ? ("➔ " + section) : ""
-            color: __mac ? Qt.darker(systemPalette.shadow, 3) : systemPalette.shadow
+            text: section
+            color: __mac ? Qt.darker(systemPalette.shadow) : systemPalette.shadow
             verticalAlignment: Text.AlignVCenter
         }
 
