@@ -26,15 +26,32 @@ Rectangle {
             color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
                             : "transparent"
 
-            Rectangle {
-                anchors.fill: parent
-                color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
-                opacity: hovered ? 0.1 : 0
-            }
+            /// Tested on Ubuntu style.
+            /// TODO test it on mac and windows styles
+
+            //gradient: selected ? gradient : noGradient
+
+            //Gradient {
+            //    id: gradient
+
+            //    GradientStop { position: 0; color: systemPalette.highlight }
+            //    GradientStop { position: 1; color: Qt.lighter(systemPalette.highlight, 1.1) }
+            //}
+
+            //Gradient {
+            //    id: noGradient
+            //    GradientStop { position: 1; color: "transparent" }
+            //}
+
+            //Rectangle {
+            //    anchors.fill: parent
+            //    color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
+            //    opacity: hovered ? 0.1 : 0
+            //}
 
             RowLayout {
                 anchors.fill: parent
-                anchors.leftMargin: units.gu(2)
+                anchors.leftMargin: units.gu(4)
 
                 Image {
                     source: model.iconSource
@@ -57,31 +74,31 @@ Rectangle {
                 }
             }
 
-            Rectangle {
-                id: hrt
+            //Rectangle {
+            //id: hrt
 
-                height: 1
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                }
+            //height: 1
+            //anchors {
+            //    left: parent.left
+            //    right: parent.right
+            //    top: parent.top
+            //}
 
-                color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
-            }
+            //color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
+            //}
 
-            Rectangle {
-                id: hrb
+            //Rectangle {
+            //id: hrb
 
-                height: 1
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    bottom: parent.bottom
-                }
+            //height: 1
+            //anchors {
+            //    left: parent.left
+            //    right: parent.right
+            //    bottom: parent.bottom
+            //}
 
-                color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
-            }
+            //color: selected ? Qt.darker(systemPalette.highlight) : "transparent"
+            //}
         }
     }
 
@@ -100,11 +117,11 @@ Rectangle {
             anchors {
                 left: parent.left
                 right: parent.right
-                leftMargin: units.gu(2)
+                leftMargin: units.gu(4)
             }
 
             text: section
-            color: __mac ? Qt.darker(systemPalette.shadow) : systemPalette.shadow
+            font.bold: true
             verticalAlignment: Text.AlignVCenter
         }
 
