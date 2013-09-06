@@ -23,31 +23,31 @@ Rectangle {
         Rectangle {
             implicitHeight: units.gu(6)
 
-            color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
-                            : "transparent"
+            //color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
+            //                : "transparent"
 
-            /// Tested on Ubuntu style.
-            /// TODO test it on mac and windows styles
+            // Tested on Ubuntu style.
+            // TODO test it on mac and windows styles
 
-            //gradient: selected ? gradient : noGradient
+            gradient: selected ? gradient : noGradient
 
-            //Gradient {
-            //    id: gradient
+            Gradient {
+                id: gradient
 
-            //    GradientStop { position: 0; color: systemPalette.highlight }
-            //    GradientStop { position: 1; color: Qt.lighter(systemPalette.highlight, 1.1) }
-            //}
+                GradientStop { position: 0; color: __mac ? Qt.darker(systemPalette.highlight, 1.4) : systemPalette.highlight }
+                GradientStop { position: 1; color: __mac ? Qt.darker(systemPalette.highlight, 1.6) : Qt.lighter(systemPalette.highlight, 1.1) }
+            }
 
-            //Gradient {
-            //    id: noGradient
-            //    GradientStop { position: 1; color: "transparent" }
-            //}
+            Gradient {
+                id: noGradient
+                GradientStop { position: 1; color: "transparent" }
+            }
 
-            //Rectangle {
-            //    anchors.fill: parent
-            //    color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
-            //    opacity: hovered ? 0.1 : 0
-            //}
+            Rectangle {
+                anchors.fill: parent
+                color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
+                opacity: hovered ? 0.1 : 0
+            }
 
             RowLayout {
                 anchors.fill: parent
