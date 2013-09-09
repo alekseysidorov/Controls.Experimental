@@ -46,7 +46,7 @@ ButtonStyle {
         Label {
             id: text
             text: control.text
-            wrapMode: Text.WrapAnywhere
+            wrapMode: Text.WordWrap
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
         }
