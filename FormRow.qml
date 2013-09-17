@@ -8,7 +8,7 @@ Item {
     property alias title: label.text
     default property alias data: loader.sourceComponent
 
-    implicitHeight: childrenRect.height
+    implicitHeight: Math.max(label.implicitHeight, loader.implicitHeight)
     implicitWidth: label.implicitWidth + loader.implicitWidth + units.gu(3)
 
     Label {
@@ -18,6 +18,8 @@ Item {
         anchors.rightMargin: units.gu(1)
         elide: Text.ElideRight
         horizontalAlignment: Text.AlignRight
+        verticalAlignment: Text.AlignVCenter
+        height: Math.max(implicitHeight, loader.implicitHeight)
     }
 
     Loader {
@@ -26,5 +28,9 @@ Item {
         anchors.left: parent.horizontalCenter
         //anchors.right: parent.right
         //anchors.rightMargin: units.gu(1)
+    }
+
+    Units {
+        id: units
     }
 }
