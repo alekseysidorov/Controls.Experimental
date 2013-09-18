@@ -19,7 +19,11 @@ ButtonStyle {
             if (!control.iconSource)
                 return textComponent;
 
-            switch (style.iconStyle) {
+            var iconStyle = control.iconStyle;
+            if (iconStyle === undefined)
+                iconStyle = style.iconStyle;
+
+            switch (iconStyle) {
             case Qt.ToolButtonIconOnly:
                 return icon;
             case Qt.ToolButtonTextUnderIcon:
@@ -33,6 +37,8 @@ ButtonStyle {
 
     property Component icon: Component {
         Image {
+            sourceSize.width: control.iconSize ? control.iconSize : undefined
+
             fillMode: Image.PreserveAspectFit
             source: control.iconSource
             smooth: true
@@ -61,7 +67,7 @@ ButtonStyle {
                 Layout.maximumHeight: 1
             }
             Loader {
-                Layout.fillHeight: true
+                Layout.fillHeight: control.iconSize === undefined
                 anchors.horizontalCenter: parent.horizontalCenter
                 sourceComponent: icon
             }
