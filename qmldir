@@ -7,3 +7,5 @@ IconButtonStyle 1.0 IconButtonStyle.qml
 IconButtonStyleBase 1.0 IconButtonStyleBase.qml
 BorderImageButtonStyle 1.0 ImageButtonStyle.qml
 FormRow 1.0 FormRow.qml
+Action 1.0 Action.qml
+Button 1.0 Button.qml
