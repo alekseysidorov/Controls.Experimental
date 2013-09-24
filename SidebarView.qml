@@ -27,13 +27,21 @@ Rectangle {
         }
 
         function replaceItem(c) {
-            contentLoader.sourceComponent = c.sourceComponent;
-            //if (c.status === Loader.Ready) {
-            //    stack.push({item:c.item, replace: true});
-            //}
+            c.active = true;
+            if (c.status === Loader.Ready) {
+                stack.push({item:c, replace: true});
+            }
         }
 
         onCurrentItemChanged: updateItem()
+
+        Connections {
+            target: d.currentItem
+
+            onStatusChanged: {
+                d.replaceItem(d.currentItem);
+            }
+        }
     }
 
     SplitView {
@@ -49,48 +57,48 @@ Rectangle {
             id: contentArea
             color: systemPalette.base
 
-            Loader {
-                id: headerLoader
+            //Loader {
+            //    id: headerLoader
 
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
+            //    anchors.left: parent.left
+            //    anchors.right: parent.right
+            //    anchors.top: parent.top
 
-                height: item ? item.implicitHeight : 0
-            }
+            //    height: item ? item.implicitHeight : 0
+            //}
 
-            Item {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: headerLoader.bottom
-                anchors.bottom: parent.bottom
+            //Item {
+            //    anchors.left: parent.left
+            //    anchors.right: parent.right
+            //    anchors.top: headerLoader.bottom
+            //    anchors.bottom: parent.bottom
 
-                clip: true
-
-                Loader {
-                    id: contentLoader
-
-                    anchors.fill: parent
-                }
-            }
-
-            //ColumnLayout {
-            //    anchors.fill: parent
+            //    clip: true
 
             //    Loader {
-            //        id: headerLoader
+            //        id: contentLoader
 
-            //        Layout.fillWidth: true
-            //        height: item ? item.implicitHeight : 0
-            //    }
-
-            //    StackView {
-            //        id: stack
-            //        Layout.fillWidth: true
-            //        Layout.fillHeight: true
-            //        clip: true
+            //        anchors.fill: parent
             //    }
             //}
+
+            ColumnLayout {
+                anchors.fill: parent
+
+                Loader {
+                    id: headerLoader
+
+                    Layout.fillWidth: true
+                    height: item ? item.implicitHeight : 0
+                }
+
+                StackView {
+                    id: stack
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    clip: true
+                }
+            }
         }
 
     }
