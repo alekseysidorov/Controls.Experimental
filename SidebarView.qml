@@ -8,30 +8,32 @@ Rectangle {
 
     property alias currentIndex: sideBar.currentIndex
     property alias currentItem: d.currentItem
-    property alias data: d.data
+    property alias header: headerLoader.sourceComponent
+    property alias items: d.items
+
+    default property alias data: d.items
 
     Item {
         id: d
 
-        property Item currentItem: children[currentIndex]
-        property Item oldItem
+        property Item currentItem: items[view.currentIndex]
+        property list<Item> items
 
-        function update() {
+        function updateItem() {
             var c = currentItem;
             if (c) {
-                c.active = true;
-                if (c.status === Loader.Ready) {
-                    stack.replace(c.item);
-                } else {
-                    c.statusChanged.connect(function() {
-                        stack.replace(c.item);
-                    });
-                }
-                oldItem = c;
+                replaceItem(c);
             }
         }
 
-        onCurrentItemChanged: update()
+        function replaceItem(c) {
+            contentLoader.sourceComponent = c.sourceComponent;
+            //if (c.status === Loader.Ready) {
+            //    stack.push({item:c.item, replace: true});
+            //}
+        }
+
+        onCurrentItemChanged: updateItem()
     }
 
     SplitView {
@@ -40,18 +42,55 @@ Rectangle {
         Sidebar {
             id: sideBar
 
-            sidebarItems: d.children
+            sidebarItems: view.items
         }
 
         Rectangle {
             id: contentArea
             color: systemPalette.base
-            clip: true
 
-            StackView {
-                id: stack
-                anchors.fill: parent
+            Loader {
+                id: headerLoader
+
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+
+                height: item ? item.implicitHeight : 0
             }
+
+            Item {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: headerLoader.bottom
+                anchors.bottom: parent.bottom
+
+                clip: true
+
+                Loader {
+                    id: contentLoader
+
+                    anchors.fill: parent
+                }
+            }
+
+            //ColumnLayout {
+            //    anchors.fill: parent
+
+            //    Loader {
+            //        id: headerLoader
+
+            //        Layout.fillWidth: true
+            //        height: item ? item.implicitHeight : 0
+            //    }
+
+            //    StackView {
+            //        id: stack
+            //        Layout.fillWidth: true
+            //        Layout.fillHeight: true
+            //        clip: true
+            //    }
+            //}
         }
 
     }

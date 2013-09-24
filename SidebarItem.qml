@@ -12,4 +12,6 @@ Tab {
     property string section
 
     property Component sidebarDelegate
+
+    anchors.fill: undefined
 }

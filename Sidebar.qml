@@ -107,7 +107,6 @@ Rectangle {
 
         anchors.fill: parent
         anchors.topMargin: units.gu(1)
-        model: d.children
         interactive: false
 
         section.property: "section"
