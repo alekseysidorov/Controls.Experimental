@@ -107,7 +107,7 @@ Rectangle {
 
         anchors.fill: parent
         anchors.topMargin: units.gu(1)
-        interactive: false
+        //interactive: false
 
         section.property: "section"
         section.delegate: Label {

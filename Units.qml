@@ -4,7 +4,7 @@ import QtQuick.Window 2.1
 Item {
     readonly property real gridUnit: {
         if (Qt.platform.os === "android")
-            return 10;
+            return 8;
         return Math.max(4, Screen.logicalPixelDensity);
     }
 
