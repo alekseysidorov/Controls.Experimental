@@ -2,35 +2,83 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
 
-Item {
-    id: row
+Loader {
+    id: control
 
-    property alias title: label.text
-    default property alias data: loader.sourceComponent
+    property string title
+    property Component content
 
-    implicitHeight: Math.max(label.implicitHeight, loader.implicitHeight)
-    implicitWidth: label.implicitWidth + loader.implicitWidth + units.gu(3)
+    property alias style: control.sourceComponent
 
-    Label {
-        id: label
+    /*! internal */
+    default property alias data: control.content
 
-        anchors.right: parent.horizontalCenter
-        anchors.rightMargin: units.gu(1)
-        elide: Text.ElideRight
-        horizontalAlignment: Text.AlignRight
-        verticalAlignment: Text.AlignVCenter
-        height: Math.max(implicitHeight, loader.implicitHeight)
+    sourceComponent: Qt.platform.os === "android" ? mobileRowStyle : desktopRowStyle
+
+    Component {
+        id: desktopRowStyle
+
+        Item {
+            id: row
+
+            implicitHeight: Math.max(label.implicitHeight, loader.implicitHeight)
+            implicitWidth: label.implicitWidth + loader.implicitWidth + units.gu(3)
+
+            Label {
+                id: label
+
+                anchors.right: parent.horizontalCenter
+                anchors.rightMargin: units.gu(1)
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                height: Math.max(implicitHeight, loader.implicitHeight)
+                text: control.title
+            }
+
+            Loader {
+                id: loader
+
+                anchors.left: parent.horizontalCenter
+                sourceComponent: control.content
+                //anchors.right: parent.right
+                //anchors.rightMargin: units.gu(1)
+            }
+
+            Units {
+                id: units
+            }
+        }
     }
 
-    Loader {
-        id: loader
+    Component {
+        id: mobileRowStyle
 
-        anchors.left: parent.horizontalCenter
-        //anchors.right: parent.right
-        //anchors.rightMargin: units.gu(1)
-    }
+        Row {
+            id: row
 
-    Units {
-        id: units
+            spacing: units.gu(2)
+
+            Label {
+                id: label
+
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignRight
+                verticalAlignment: Text.AlignVCenter
+                height: Math.max(implicitHeight, loader.implicitHeight)
+                text: control.title
+            }
+
+            Loader {
+                id: loader
+
+                sourceComponent: control.content
+            }
+
+            Units {
+                id: units
+            }
+        }
     }
 }
+
