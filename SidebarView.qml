@@ -11,6 +11,8 @@ Rectangle {
     property alias header: headerLoader.sourceComponent
     property alias items: d.items
 
+    property alias sideBarMinimumWidth: sideBar.minimumWidth
+
     default property alias data: d.items
 
     Item {

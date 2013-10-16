@@ -8,6 +8,7 @@ Rectangle {
     property alias currentIndex: view.currentIndex
     property Item currentItem: sidebarItems[currentIndex]
     property alias sidebarItems: view.model
+    property int minimumWidth: units.gu(45)
 
     /*! internal */
     readonly property bool __mac: Qt.platform.os === "osx"
@@ -15,7 +16,7 @@ Rectangle {
 
     color: systemPalette.window
     clip: true
-    Layout.minimumWidth: units.gu(40)
+    Layout.minimumWidth: sideBarArea.minimumWidth
 
     Component {
         id: sideBarComp
