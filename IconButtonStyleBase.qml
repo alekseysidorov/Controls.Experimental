@@ -45,17 +45,12 @@ ButtonStyle {
             opacity: enabled ? 1 : 0.5
         }
     }
-
-    Component {
-        id: textComponent
-
-        Label {
-            id: text
-            text: control.text
-            wrapMode: Text.WordWrap
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-        }
+    property Component textComponent: Label {
+        id: text
+        text: control.text
+        wrapMode: Text.WordWrap
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
     }
 
     Component {
