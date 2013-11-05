@@ -12,6 +12,7 @@ Rectangle {
     property alias items: d.items
 
     property alias sideBarMinimumWidth: sideBar.minimumWidth
+    property alias footer: sideBar.footer
 
     default property alias data: d.items
 

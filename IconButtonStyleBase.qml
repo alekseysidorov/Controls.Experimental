@@ -51,6 +51,7 @@ ButtonStyle {
         wrapMode: Text.WordWrap
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
+        elide: Text.ElideMiddle
     }
 
     Component {

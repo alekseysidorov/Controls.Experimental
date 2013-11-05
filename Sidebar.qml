@@ -10,6 +10,8 @@ Rectangle {
     property alias sidebarItems: view.model
     property int minimumWidth: units.gu(45)
 
+    property Component footer
+
     /*! internal */
     readonly property bool __mac: Qt.platform.os === "osx"
     property int __iconSize: units.gu(4)
@@ -103,49 +105,63 @@ Rectangle {
         }
     }
 
-    ListView {
-        id: view
-
+    ColumnLayout {
         anchors.fill: parent
         anchors.topMargin: units.gu(1)
-        //interactive: false
+        anchors.bottomMargin: units.gu(1)
 
-        section.property: "section"
-        section.delegate: Label {
-            height: units.gu(6)
+        ListView {
+            id: view
 
-            anchors {
-                left: parent.left
-                right: parent.right
-                leftMargin: units.gu(4)
+            interactive: false
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            section.property: "section"
+            section.delegate: Label {
+                height: units.gu(6)
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: units.gu(4)
+                }
+
+                text: section
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
             }
 
-            text: section
-            font.bold: true
-            verticalAlignment: Text.AlignVCenter
+            delegate: Loader {
+                readonly property bool selected: currentIndex === index
+                readonly property QtObject model: modelData
+                readonly property bool hovered: area.containsMouse
+
+                sourceComponent: model.sidebarDelegate ? model.sidebarDelegate : sideBarComp
+                height: item ? item.implicitHeight : units.gu(8)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                MouseArea {
+                    id: area
+
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    enabled: sidebarItems[index].sourceComponent
+
+                    onClicked: currentIndex = index
+                }
+            }
         }
 
-        delegate: Loader {
-            readonly property bool selected: currentIndex === index
-            readonly property QtObject model: modelData
-            readonly property bool hovered: area.containsMouse
+        Loader {
+            id: footerLoader
 
-            sourceComponent: model.sidebarDelegate ? model.sidebarDelegate : sideBarComp
-            height: item ? item.implicitHeight : units.gu(8)
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-
-            MouseArea {
-                id: area
-
-                anchors.fill: parent
-                hoverEnabled: true
-                enabled: sidebarItems[index].sourceComponent
-
-                onClicked: currentIndex = index
-            }
+            Layout.fillWidth: true
+            Layout.minimumHeight: units.gu(16)
+            sourceComponent: sideBarArea.footer
         }
     }
 
