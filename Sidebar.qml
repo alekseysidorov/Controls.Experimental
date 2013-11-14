@@ -46,11 +46,11 @@ Rectangle {
                 GradientStop { position: 1; color: "transparent" }
             }
 
-            Rectangle {
-                anchors.fill: parent
-                color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
-                opacity: hovered ? 0.1 : 0
-            }
+            //Rectangle {
+            //    anchors.fill: parent
+            //    color: __mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight
+            //    opacity: hovered ? 0.1 : 0
+            //}
 
             RowLayout {
                 anchors.fill: parent
