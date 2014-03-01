@@ -33,6 +33,5 @@ Item {
         id: contentLoader
         anchors.fill: parent
         active: false
-        asynchronous: true
     }
 }

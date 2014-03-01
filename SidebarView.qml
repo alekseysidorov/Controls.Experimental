@@ -1,7 +1,7 @@
-import QtQuick 2.1
+import QtQuick 2.2
 
-import QtQuick.Controls 1.0
-import QtQuick.Layouts 1.0
+import QtQuick.Controls 1.1
+import QtQuick.Layouts 1.1
 
 Rectangle {
     id: view
@@ -30,11 +30,11 @@ Rectangle {
         }
 
         function replaceItem(c) {
-            contentLoader.sourceComponent = c.sourceComponent;
-            //c.active = true;
-            //if (c.status === Loader.Ready) {
-            //    stack.push({item:c, replace: true});
-            //}
+            //contentLoader.sourceComponent = c.sourceComponent;
+            c.active = true;
+            if (c.status === Loader.Ready) {
+                stack.push({item:c, replace: true});
+            }
         }
 
         onCurrentItemChanged: updateItem()
@@ -79,11 +79,39 @@ Rectangle {
 
                 clip: true
 
-                Loader {
-                    id: contentLoader
+                StackView {
+                    id: stack
 
                     anchors.fill: parent
+                    smooth: true
+                    delegate: StackViewDelegate {
+                        function transitionFinished(properties)
+                        {
+                            properties.exitItem.opacity = 1
+                        }
+
+                        pushTransition: StackViewTransition {
+                            PropertyAnimation {
+                                target: enterItem
+                                property: "opacity"
+                                from: 0
+                                to: 1
+                            }
+                            PropertyAnimation {
+                                target: exitItem
+                                property: "opacity"
+                                from: 1
+                                to: 0
+                            }
+                        }
+                    }
                 }
+
+                //Loader {
+                //    id: contentLoader
+
+                //    anchors.fill: parent
+                //}
             }
 
             //ColumnLayout {
@@ -108,7 +136,5 @@ Rectangle {
     }
 
     SystemPalette { id: systemPalette }
-
-    Units { id: units }
 }
 

@@ -2,19 +2,21 @@ import QtQuick 2.1
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 
+import Controls.Experimental 1.0
+
 Rectangle {
     id: sideBarArea
 
     property alias currentIndex: view.currentIndex
     property Item currentItem: sidebarItems[currentIndex]
     property alias sidebarItems: view.model
-    property int minimumWidth: units.gu(45)
+    property int minimumWidth: Units.gu(45)
 
     property Component footer
 
     /*! internal */
     readonly property bool __mac: Qt.platform.os === "osx"
-    property int __iconSize: units.gu(4)
+    property int __iconSize: Units.gu(4)
 
     color: systemPalette.window
     clip: true
@@ -24,7 +26,7 @@ Rectangle {
         id: sideBarComp
 
         Rectangle {
-            implicitHeight: units.gu(6)
+            implicitHeight: Units.gu(6)
 
             //color: selected ? (__mac ? Qt.darker(systemPalette.highlight, 1.5) : systemPalette.highlight)
             //                : "transparent"
@@ -54,7 +56,7 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.leftMargin: units.gu(4)
+                anchors.leftMargin: Units.gu(4)
 
                 Image {
                     source: model.iconSource
@@ -107,8 +109,8 @@ Rectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.topMargin: units.gu(1)
-        anchors.bottomMargin: units.gu(1)
+        anchors.topMargin: Units.gu(1)
+        anchors.bottomMargin: Units.gu(1)
 
         ListView {
             id: view
@@ -119,12 +121,12 @@ Rectangle {
 
             section.property: "section"
             section.delegate: Label {
-                height: units.gu(6)
+                height: Units.gu(6)
 
                 anchors {
                     left: parent.left
                     right: parent.right
-                    leftMargin: units.gu(4)
+                    leftMargin: Units.gu(4)
                 }
 
                 text: section
@@ -138,7 +140,7 @@ Rectangle {
                 readonly property bool hovered: area.containsMouse
 
                 sourceComponent: model.sidebarDelegate ? model.sidebarDelegate : sideBarComp
-                height: item ? item.implicitHeight : units.gu(8)
+                height: item ? item.implicitHeight : Units.gu(8)
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -160,13 +162,9 @@ Rectangle {
             id: footerLoader
 
             Layout.fillWidth: true
-            Layout.minimumHeight: units.gu(16)
+            Layout.minimumHeight: Units.gu(16)
             sourceComponent: sideBarArea.footer
         }
-    }
-
-    Units {
-        id: units
     }
 
     SystemPalette {

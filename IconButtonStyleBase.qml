@@ -5,6 +5,8 @@ import QtQuick.Layouts 1.0
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Private 1.0
 
+import Controls.Experimental 1.0
+
 ButtonStyle {
     id: style
 

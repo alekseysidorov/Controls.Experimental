@@ -2,6 +2,8 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
 
+import Controls.Experimental 1.0
+
 Loader {
     id: control
 
@@ -22,13 +24,13 @@ Loader {
             id: row
 
             implicitHeight: Math.max(label.implicitHeight, loader.implicitHeight)
-            implicitWidth: label.implicitWidth + loader.implicitWidth + units.gu(3)
+            implicitWidth: label.implicitWidth + loader.implicitWidth + Units.gu(3)
 
             Label {
                 id: label
 
                 anchors.right: parent.horizontalCenter
-                anchors.rightMargin: units.gu(1)
+                anchors.rightMargin: Units.gu(1)
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -42,11 +44,7 @@ Loader {
                 anchors.left: parent.horizontalCenter
                 sourceComponent: control.content
                 //anchors.right: parent.right
-                //anchors.rightMargin: units.gu(1)
-            }
-
-            Units {
-                id: units
+                //anchors.rightMargin: Units.gu(1)
             }
         }
     }
@@ -57,7 +55,7 @@ Loader {
         Row {
             id: row
 
-            spacing: units.gu(2)
+            spacing: Units.gu(2)
 
             Label {
                 id: label
@@ -73,10 +71,6 @@ Loader {
                 id: loader
 
                 sourceComponent: control.content
-            }
-
-            Units {
-                id: units
             }
         }
     }
