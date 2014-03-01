@@ -5,7 +5,7 @@ SidebarView 1.0 SidebarView.qml
 IconButtonStyle 1.0 IconButtonStyle.qml
 ToolIconButtonStyle 1.0 ToolIconButtonStyle.qml
 IconButtonStyleBase 1.0 IconButtonStyleBase.qml
-BorderImageButtonStyle 1.0 ImageButtonStyle.qml
+BorderImageButtonStyle 1.0 BorderImageButtonStyle.qml
 FormRow 1.0 FormRow.qml
 Action 1.0 Action.qml
 Button 1.0 Button.qml
