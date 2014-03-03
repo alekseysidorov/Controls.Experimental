@@ -16,6 +16,7 @@ Loader {
     default property alias data: control.content
 
     sourceComponent: Qt.platform.os === "android" ? mobileRowStyle : desktopRowStyle
+    Layout.fillWidth: true
 
     Component {
         id: desktopRowStyle
