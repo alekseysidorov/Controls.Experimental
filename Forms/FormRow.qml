@@ -2,7 +2,7 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
 
-import Controls.Experimental 1.0
+import Controls 1.0
 
 Loader {
     id: control
@@ -44,8 +44,6 @@ Loader {
 
                 anchors.left: parent.horizontalCenter
                 sourceComponent: control.content
-                //anchors.right: parent.right
-                //anchors.rightMargin: Units.gu(1)
             }
         }
     }

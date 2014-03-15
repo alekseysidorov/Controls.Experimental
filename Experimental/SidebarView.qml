@@ -106,31 +106,7 @@ Rectangle {
                         }
                     }
                 }
-
-                //Loader {
-                //    id: contentLoader
-
-                //    anchors.fill: parent
-                //}
             }
-
-            //ColumnLayout {
-            //    anchors.fill: parent
-
-            //    Loader {
-            //        id: headerLoader
-
-            //        Layout.fillWidth: true
-            //        height: item ? item.implicitHeight : 0
-            //    }
-
-            //    StackView {
-            //        id: stack
-            //        Layout.fillWidth: true
-            //        Layout.fillHeight: true
-            //        clip: true
-            //    }
-            //}
         }
 
     }

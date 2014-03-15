@@ -1,0 +1,5 @@
+module Controls.Forms
+
+FormRow 1.0 FormRow.qml
+FormLabel 1.0 FormLabel.qml
+FormLayout 1.0 FormLayout.qml
