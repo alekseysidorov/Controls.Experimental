@@ -1,0 +1,7 @@
+module Controls.Forms.Options
+
+Category 1.0 ../FormLabel.qml
+OptionCheckable 1.0 OptionCheckable.qml
+OptionString 1.0 OptionString.qml
+OptionDouble 1.0 OptionDouble.qml
+OptionSelect 1.0 OptionSelect.qml
