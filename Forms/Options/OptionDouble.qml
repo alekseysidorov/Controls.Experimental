@@ -8,9 +8,9 @@ Option {
 
     property string title
     property real value
-    property real maximumValue
-    property real minimumValue
-    property int decimals
+    property real maximumValue : 1000
+    property real minimumValue : 0
+    property int decimals: 2
 
     style: FormRow {
         title: control.title
