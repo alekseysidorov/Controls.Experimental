@@ -6,6 +6,8 @@ Controls.Action {
 
     property bool pressed
 
+    default property QtObject data
+
     ///change checked behaviour
     //property bool checked
 
