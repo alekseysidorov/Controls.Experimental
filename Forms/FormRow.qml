@@ -30,9 +30,11 @@ Loader {
             Label {
                 id: label
 
+                anchors.left: parent.left
                 anchors.right: parent.horizontalCenter
                 anchors.rightMargin: Units.gu(1)
                 elide: Text.ElideRight
+                wrapMode: "WordWrap"
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
                 height: Math.max(implicitHeight, loader.implicitHeight)
