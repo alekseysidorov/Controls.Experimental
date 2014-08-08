@@ -1,9 +1,10 @@
 import QtQuick 2.1
 import QtQuick.Layouts 1.0
+import QtQuick.Controls 1.1
 
 import Controls 1.0
 
-Item {
+ScrollView {
     id: root
 
     property bool fillHeight: false
@@ -11,19 +12,24 @@ Item {
 
     default property alias data: layout.data
 
-    ColumnLayout {
-        id: layout
+    Item {
+        id: container
+        width: root.viewport.width
+        height: Math.max(layout.implicitHeight + 2*root.margins, root.height)
 
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: root.fillHeight ? parent.bottom : undefined
-            margins: root.margins
+        ColumnLayout {
+            id: layout
+
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+                bottom: root.fillHeight ? parent.bottom : undefined
+                margins: root.margins
+            }
+
+            spacing: Units.gu(2)
+            Layout.fillWidth: true
         }
-
-        spacing: Units.gu(2)
-        Layout.fillWidth: true
     }
-
 }
